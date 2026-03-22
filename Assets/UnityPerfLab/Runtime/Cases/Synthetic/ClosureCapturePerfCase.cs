@@ -18,7 +18,7 @@ namespace UnityPerfLab.Cases.Synthetic
 
             descriptor = new PerfCaseDescriptor(
                 useCapturedLambda ? "Closure_Capture_" + FormatSizeLabel(workloadSize) : "Closure_NoCapture_" + FormatSizeLabel(workloadSize),
-                "Synthetic",
+                "Closure",
                 SyntheticMeasurementDefaults.CreateForClosure(workloadSize),
                 new Dictionary<string, string>
                 {

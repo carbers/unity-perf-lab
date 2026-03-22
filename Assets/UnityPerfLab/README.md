@@ -1,71 +1,81 @@
 # UnityPerfLab
 
-`UnityPerfLab` is a small benchmark infrastructure module for Unity and IL2CPP micro-optimization research. It is meant to keep synthetic performance experiments structured, rerunnable, and comparable over time instead of spreading ad-hoc benchmark scripts across a project.
+`UnityPerfLab` is a small benchmark and performance experiment module for Unity and IL2CPP optimization research.
+
+Phase 1 focuses on a synthetic benchmark MVP that is easy to rerun, export, and extend without turning the project into a pile of ad-hoc scripts.
+
+## Purpose
+
+- keep synthetic benchmark cases isolated from normal runtime code
+- validate optimization hypotheses with a repeatable runner
+- export stable CSV outputs for later comparison
+- run the same synthetic suite from the Editor and from a Win64 IL2CPP Release Player
 
 ## Structure
 
 - `Runtime/Core`
-  Runner, benchmark abstractions, measurement configs, stats, and shared constants.
+  Runner, case abstractions, measurement config, stats, and visible sink.
 - `Runtime/Cases/Synthetic`
-  Pure benchmark cases such as traversal, dispatch, and closure overhead comparisons.
+  Phase 1 synthetic benchmark cases.
 - `Runtime/Cases/RealWorld`
-  Placeholder catalog for future cases that wrap real project code through adapters.
+  Placeholder for future phases only. Not part of the Phase 1 public workflow.
 - `Runtime/Adapters`
-  Adapter contracts for future real implementation reuse.
+  Minimal future extension point for real-world integrations.
 - `Runtime/Reporting`
   CSV and metadata export.
 - `Runtime/Environment`
-  Output path resolution and environment capture.
+  Environment capture and output path resolution.
 - `Runtime/Bootstrap`
-  Suite composition and the Player autorun bootstrap behaviour.
+  Runtime composition and Player autorun bootstrap.
 - `Editor/Runner`
-  Editor menu entry points.
+  Editor run entry point.
 - `Editor/Build`
-  Scripted Win64 IL2CPP Release build entry.
+  Win64 IL2CPP Release build entry point.
 - `Scenes`
   Minimal bootstrap scene for Player execution.
 
-## asmdef Boundaries
+## Phase 1 Boundaries
 
-- `UnityPerfLab.Runtime`
-  Core runtime abstractions and reporting.
-- `UnityPerfLab.Cases.Synthetic`
-  Synthetic benchmark cases only.
-- `UnityPerfLab.Cases.RealWorld`
-  Future real-world cases.
-- `UnityPerfLab.Bootstrap`
-  Runtime composition root that assembles suites and runs the bootstrap scene.
-- `UnityPerfLab.Editor`
-  Editor menus and scripted build entry points.
+- Public benchmark workflow is synthetic-only.
+- Case registration is explicit, not reflection-based.
+- CSV is the primary output format.
+- Real-world integrations, comparison tooling, and automation come in later phases.
 
-Existing business/runtime code should depend on none of these assemblies. Future real-world cases should depend one-way on existing runtime assemblies, never the other way around.
-
-## Running From The Editor
+## Running The Synthetic Suite
 
 Use the Unity menu:
 
 - `UnityPerfLab/Run Synthetic Suite`
-- `UnityPerfLab/Run All Available Cases`
 
-The current Synthetic suite includes:
+The current synthetic suite includes:
 
-- `Array_Int_ForEach_*` and `Array_Int_For_*`
-- `List_Int_ForEach_*` and `List_Int_For_*`
-- `List_Struct_ForEach_*` and `List_Struct_For_*`
+- `Array_Int_For_*` and `Array_Int_ForEach_*`
+- `List_Int_For_*` and `List_Int_ForEach_*`
+- `List_Struct_For_*` and `List_Struct_ForEach_*`
 - `DirectCall_*` and `InterfaceCall_*`
 - `Closure_NoCapture_*` and `Closure_Capture_*`
 
-Each family currently covers explicit size tiers:
+Each family covers these workload tiers:
 
 - `1K`
 - `100K`
 - `1M`
 
-Results are written under:
+## Output Locations
+
+Editor runs write to:
 
 - `<ProjectRoot>/PerfLabResults/<run_id>/summary.csv`
 - `<ProjectRoot>/PerfLabResults/<run_id>/raw_samples.csv`
 - `<ProjectRoot>/PerfLabResults/<run_id>/metadata.json`
+
+Player runs write to:
+
+- `Application.persistentDataPath/PerfLabResults/<run_id>/`
+
+Optional Player override:
+
+- `--outputDir=<absolute-path>`
 
 ## Building Win64 IL2CPP Release
 
@@ -83,40 +93,31 @@ The build output path is:
 
 - `<ProjectRoot>/Builds/UnityPerfLab/Win64-IL2CPP-Release/UnityPerfLab.exe`
 
-When the Player starts, the bootstrap scene runs the configured suite automatically and writes results to `Application.persistentDataPath/PerfLabResults/<run_id>/`.
-
-Optional command-line overrides:
-
-- `--suite=synthetic`
-- `--suite=all`
-- `--outputDir=<absolute-path>`
-
-The default bootstrap scene path is:
+The Player starts in:
 
 - `Assets/UnityPerfLab/Scenes/UnityPerfLabBootstrap.unity`
 
-## Adding A New Synthetic Case
+On startup, the bootstrap flow runs the synthetic suite automatically, exports results, and exits.
+
+## Adding A Synthetic Case
 
 1. Add a new `IPerfCase` implementation under `Runtime/Cases/Synthetic`.
-2. Give it a clear descriptor name that encodes workload semantics and size.
+2. Give it a descriptor name that encodes the workload semantics and size.
 3. Keep setup and teardown work outside the measured `Run(iterations)` path.
-4. Write the result into `PerfVisibleSink` so the workload stays observable.
-5. Register the case in `SyntheticPerfCaseCatalog.CreateAll()`.
-6. Pick a workload-tier-appropriate measurement config instead of reusing one blindly.
+4. Write the final result into `PerfVisibleSink`.
+5. Register the case explicitly in `SyntheticPerfCaseCatalog.CreateAll()`.
+6. Choose a measurement config that matches the workload tier.
 
-## Adding A RealWorld Adapter And Case
+## Roadmap
 
-1. Keep the real implementation in its existing runtime assembly.
-2. Add a small adapter contract or wrapper under `Runtime/Adapters` when needed.
-3. Implement the benchmark case under `Runtime/Cases/RealWorld`.
-4. Register it in `RealWorldPerfCaseCatalog.CreateAll()`.
-
-Do not copy real business code into `UnityPerfLab`, and do not make business assemblies depend back on `UnityPerfLab`.
+- `002`: collections and data layout cases
+- `003`: boxing, generics, and abstraction cases
+- `004`: real-world adapters and implementation integration
+- `005`: configuration, versioning, and regression comparison
 
 ## Known Limitations
 
-- The current MVP is synthetic-case-first; `RealWorld` integration is only scaffolded.
-- CSV is the primary export format; there is no ratio reporting or charting yet.
+- Phase 1 is synthetic-first and synthetic-only at the public workflow level.
+- There is no ratio reporting, charting, or regression comparison yet.
 - Command-line support is intentionally minimal.
-- The benchmark suite uses explicit registration instead of reflection discovery.
-- The repo still relies on opening and saving the project in Unity once to let Unity regenerate any missing `.meta` files for newly added assets.
+- IL2CPP Release Player runs remain the real validation target for optimization conclusions.

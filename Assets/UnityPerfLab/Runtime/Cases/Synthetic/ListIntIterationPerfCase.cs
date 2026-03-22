@@ -17,7 +17,7 @@ namespace UnityPerfLab.Cases.Synthetic
 
             descriptor = new PerfCaseDescriptor(
                 useForeach ? "List_Int_ForEach_" + FormatSizeLabel(workloadSize) : "List_Int_For_" + FormatSizeLabel(workloadSize),
-                "Synthetic",
+                "Looping",
                 SyntheticMeasurementDefaults.CreateForTraversal(workloadSize),
                 new Dictionary<string, string>
                 {

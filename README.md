@@ -76,4 +76,4 @@ Real-world adapter hooks are scaffolded, but no real project-specific runtime ca
 1. read [Assets/UnityPerfLab/README.md](Assets/UnityPerfLab/README.md) for benchmark-module usage
 2. read [AGENTS.md](AGENTS.md) for repository operating rules
 3. read [docs/guides/new-project-sop.md](docs/guides/new-project-sop.md) for the repo workflow
-4. read [docs/specs/unity-perf-lab-mvp-task-spec.md](docs/specs/unity-perf-lab-mvp-task-spec.md) and the split child specs for the current MVP contract
+4. read [docs/specs/2026-03-22-001-benchmark-mvp.md](docs/specs/2026-03-22-001-benchmark-mvp.md) for the current benchmark MVP contract, then [docs/specs/README.md](docs/specs/README.md) for the full spec index

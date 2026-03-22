@@ -1,25 +1,34 @@
 # Specs Index
 
-This directory contains the current UnityPerfLab MVP task spec set.
+This directory contains specification documents for `unity-perf-lab`.
 
-## Primary Spec
+## Naming Rule
 
-- `unity-perf-lab-mvp-task-spec.md`
-  Parent MVP contract for the first UnityPerfLab delivery slice.
+SPEC files use:
 
-## Execution Order
+- `YYYY-MM-DD-NNN-topic.md`
 
-1. `unity-perf-lab-mvp-01-bootstrap-task-spec.md`
-   Bootstrap the Unity project root, module layout, asmdef boundaries, and bootstrap scene.
-2. `unity-perf-lab-mvp-02-runner-reporting-task-spec.md`
-   Build the runtime runner, measurement, environment capture, and CSV-first reporting core.
-3. `unity-perf-lab-mvp-03-synthetic-suite-task-spec.md`
-   Add the initial synthetic benchmark suite and Editor run entry points.
-4. `unity-perf-lab-mvp-04-player-build-task-spec.md`
-   Add Player autorun, Win64 IL2CPP Release build entry, and module-level documentation.
+Examples:
 
-## Notes
+- `2026-03-22-001-benchmark-mvp.md`
+- `2026-04-05-002-collections-data-layout.md`
+- `2026-03-22-901-mvp-parent-draft.md`
 
-- The parent spec defines the overall MVP contract.
-- The four child specs narrow the work into reviewable slices.
-- When implementation changes the stable role or boundaries of the repository, update `docs/facts/project-scope.md` instead of appending temporary task notes here.
+`NNN` is a stable sequence identifier, not a phase label. Active execution baselines should use the main working sequence such as `001`, `002`, `003`. Historical draft specs may use a reserved `9xx` range so they remain easy to distinguish without breaking the naming rule.
+
+## Current Execution Baseline
+
+- `2026-03-22-001-benchmark-mvp.md`
+  Canonical Phase 1 SPEC for the `UnityPerfLab` synthetic benchmark MVP.
+
+## Superseded Drafts
+
+The following earlier MVP planning documents remain in the repository as historical drafts and context, but they are not the current execution baseline:
+
+- `2026-03-22-901-mvp-parent-draft.md`
+- `2026-03-22-902-bootstrap-boundaries-draft.md`
+- `2026-03-22-903-runner-reporting-core-draft.md`
+- `2026-03-22-904-synthetic-suite-editor-entry-draft.md`
+- `2026-03-22-905-player-build-module-docs-draft.md`
+
+When implementation changes stable project behavior or boundaries, write the lasting outcome to the correct layer instead of expanding draft specs.

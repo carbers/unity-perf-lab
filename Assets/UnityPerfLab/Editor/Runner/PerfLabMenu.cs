@@ -9,11 +9,5 @@ namespace UnityPerfLab.Editor.Runner
         {
             PerfLabEditorRunner.RunSyntheticSuite();
         }
-
-        [MenuItem("UnityPerfLab/Run All Available Cases")]
-        public static void RunAllAvailableCases()
-        {
-            PerfLabEditorRunner.RunAllAvailableCases();
-        }
     }
 }

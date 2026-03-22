@@ -3,8 +3,7 @@
   "rootNamespace": "UnityPerfLab.Bootstrap",
   "references": [
     "UnityPerfLab.Runtime",
-    "UnityPerfLab.Cases.Synthetic",
-    "UnityPerfLab.Cases.RealWorld"
+    "UnityPerfLab.Cases.Synthetic"
   ],
   "includePlatforms": [],
   "excludePlatforms": [],

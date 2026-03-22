@@ -11,11 +11,6 @@ namespace UnityPerfLab.Editor.Runner
             RunSuite(PerfSuiteCatalog.SyntheticSuite);
         }
 
-        public static void RunAllAvailableCases()
-        {
-            RunSuite(PerfSuiteCatalog.AllSuite);
-        }
-
         private static void RunSuite(string suiteName)
         {
             PerfRunResult result = PerfLabExecution.Run(suiteName, "Editor");

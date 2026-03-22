@@ -31,7 +31,7 @@ namespace UnityPerfLab.Cases.Synthetic
 
             descriptor = new PerfCaseDescriptor(
                 useInterfaceDispatch ? "InterfaceCall_" + FormatSizeLabel(workloadSize) : "DirectCall_" + FormatSizeLabel(workloadSize),
-                "Synthetic",
+                "Dispatch",
                 SyntheticMeasurementDefaults.CreateForTraversal(workloadSize),
                 new Dictionary<string, string>
                 {

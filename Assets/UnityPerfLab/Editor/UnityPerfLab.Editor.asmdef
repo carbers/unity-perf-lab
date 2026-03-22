@@ -4,7 +4,6 @@
   "references": [
     "UnityPerfLab.Runtime",
     "UnityPerfLab.Cases.Synthetic",
-    "UnityPerfLab.Cases.RealWorld",
     "UnityPerfLab.Bootstrap"
   ],
   "includePlatforms": [
