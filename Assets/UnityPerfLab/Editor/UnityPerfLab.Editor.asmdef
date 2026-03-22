@@ -1,0 +1,21 @@
+{
+  "name": "UnityPerfLab.Editor",
+  "rootNamespace": "UnityPerfLab.Editor",
+  "references": [
+    "UnityPerfLab.Runtime",
+    "UnityPerfLab.Cases.Synthetic",
+    "UnityPerfLab.Cases.RealWorld",
+    "UnityPerfLab.Bootstrap"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

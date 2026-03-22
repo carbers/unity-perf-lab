@@ -1,0 +1,16 @@
+{
+  "name": "UnityPerfLab.Cases.Synthetic",
+  "rootNamespace": "UnityPerfLab.Cases.Synthetic",
+  "references": [
+    "UnityPerfLab.Runtime"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}
