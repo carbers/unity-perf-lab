@@ -1,20 +1,81 @@
-# Specs Index
+# Specs Directory
 
-This directory contains specification documents for `unity-perf-lab`.
+Task specs are the default execution artifact between planning and implementation in `unity-perf-lab`.
 
-## Naming Rule
+## Purpose
 
-SPEC files use:
+Use `docs/specs/*` to hold narrow task specs that:
+- bridge plans and implementation
+- keep execution reviewable
+- stay small enough to refine during iteration
 
-- `YYYY-MM-DD-NNN-topic.md`
+This directory usually does not need a central index.
+This repository keeps a lightweight baseline and legacy-draft index below because the project already has active and historical spec artifacts worth preserving.
 
-Examples:
+## Naming
 
-- `2026-03-22-001-benchmark-mvp.md`
-- `2026-04-05-002-collections-data-layout.md`
-- `2026-03-22-901-mvp-parent-draft.md`
+Store new specs as:
 
-`NNN` is a stable sequence identifier, not a phase label. Active execution baselines should use the main working sequence such as `001`, `002`, `003`. Historical draft specs may use a reserved `9xx` range so they remain easy to distinguish without breaking the naming rule.
+`docs/specs/YYYYMMDD-NNN-task-slug.md`
+
+- `YYYYMMDD` is the spec creation date
+- `NNN` is the same-day sequence, starting at `001`
+- choose the next available same-day sequence by scanning existing spec filenames that already use this format
+- never renumber existing specs
+- `task-slug` is lowercase kebab-case
+
+Example:
+
+`docs/specs/20260322-001-auth-session-hardening.md`
+
+## Legacy Specs
+
+The existing `2026-03-22-*.md` files use an earlier `YYYY-MM-DD-NNN-task-slug.md` format.
+Keep those files and their references unchanged.
+Do not rename legacy specs as part of routine SOP maintenance.
+
+Legacy `9xx` draft IDs remain historical markers for earlier planning slices.
+When creating new active specs, continue using the normal same-day sequence such as `001`, `002`, `003`.
+Do not treat legacy `9xx` drafts as the next active sequence number.
+
+## Create Or Refine
+
+- if a plan or phase slice exists, derive one or more specs before editing
+- if iterating within the same reviewable slice, refine the existing spec
+- if the primary outcome, boundary, or validation path changes, create a new dated spec first
+- only tiny task requests that are already effectively spec-complete and trivially narrow may skip spec creation
+
+## Keep Specs Small
+
+One spec should produce one primary reviewable outcome.
+One plan may produce multiple specs.
+
+Split a spec when it would contain:
+- multiple primary outcomes
+- independently reviewable slices
+- distinct validation paths
+- a checklist that no longer stays short
+
+## Status
+
+Use one of these status values:
+
+- `draft`: the spec exists, but implementation should not start yet
+- `in-progress`: implementation for this spec has started
+- `blocked`: progress is waiting on a prerequisite, dependency, or decision
+- `done`: `Done When` is satisfied and required validation has passed
+
+Checklist completion alone does not make a spec `done`.
+Required validation must also pass.
+
+## Checklist
+
+Use a short Markdown checkbox list inside each spec.
+
+- keep it narrow, usually 3-7 items
+- make items concrete and outcome-oriented
+- do not use the checklist as a work log
+- do not use the checklist as a full project board
 
 ## Current Execution Baseline
 

@@ -1,5 +1,8 @@
 # Plan Template
 
+Use this template only when a plan should become a durable repo artifact worth re-reading, sharing, or handing off.
+If the plan is already clear enough to derive specs, skip this and move directly to task spec creation.
+
 ## Problem
 What problem is being solved?
 

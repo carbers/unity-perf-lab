@@ -37,9 +37,9 @@ The first MVP focuses on a working closed loop:
 - `docs/guides/*`
   SOP usage guidance that still applies to work done in this repo.
 - `docs/templates/*`
-  Reusable plan, task spec, and change-summary templates.
+  Reusable plan, task spec, change-summary, and prompt scaffold templates.
 - `docs/specs/*`
-  Concrete task specs derived from plans for this project.
+  Task specs used as the default execution artifact between planning and implementation.
 - `docs/facts/*`
   Stable project context and validation-relevant facts.
 - `skills/*`
@@ -49,11 +49,18 @@ The first MVP focuses on a working closed loop:
 
 The expected workflow for changes in this repo is still:
 
-1. start from a plan or a clearly scoped request
-2. derive one or more narrow task specs
+1. start from a plan, a phase slice, or a clearly scoped request
+2. derive or refine one or more narrow task specs
 3. implement the smallest coherent slice
 4. validate explicitly
 5. write back only stable, reusable facts
+6. promote repeated workflows into skills when they stabilize
+
+When a plan or phase slice exists, the default execution path is `plan -> one or more task specs -> implementation -> validation`.
+A written plan document is optional. Use `docs/templates/plan-template.md` only when the plan should become a durable repo artifact worth re-reading, sharing, or handing off.
+Plans may remain temporary. The task spec is the default durable execution artifact for implementation and iteration.
+If iterating within the same reviewable slice, refine the existing spec. If the primary outcome, boundary, or validation path changes, create a new dated spec first.
+Only tiny task requests that are already effectively spec-complete and trivially narrow may skip spec creation.
 
 Black-box validation remains the default acceptance path. White-box validation is added when internal logic is branch-heavy, stateful, contract-sensitive, or otherwise regression-prone.
 
@@ -77,3 +84,5 @@ Real-world adapter hooks are scaffolded, but no real project-specific runtime ca
 2. read [AGENTS.md](AGENTS.md) for repository operating rules
 3. read [docs/guides/new-project-sop.md](docs/guides/new-project-sop.md) for the repo workflow
 4. read [docs/specs/2026-03-22-001-benchmark-mvp.md](docs/specs/2026-03-22-001-benchmark-mvp.md) for the current benchmark MVP contract, then [docs/specs/README.md](docs/specs/README.md) for the full spec index
+5. if design, planning, and execution are split across tools or roles, use [docs/guides/design-to-spec-handoff.md](docs/guides/design-to-spec-handoff.md)
+6. use [docs/templates/design-to-planner-prompt-template.md](docs/templates/design-to-planner-prompt-template.md) and [docs/templates/spec-to-executor-prompt-template.md](docs/templates/spec-to-executor-prompt-template.md) for structured handoff prompts

@@ -5,7 +5,7 @@ Use this SOP when starting a new project or when introducing structure into an e
 ## Default startup order
 
 1. clarify the project at a plan level
-2. derive task specs from the plan
+2. derive one or more task specs from the plan
 3. implement narrowly
 4. validate explicitly
 5. write back stable facts
@@ -21,8 +21,11 @@ Before coding, clarify:
 - the main constraints
 - the first reviewable slice
 
-### 2. Write the first plan
-Use `docs/templates/plan-template.md`.
+### 2. Establish the first plan
+First establish the plan in the planning workflow you actually use.
+A written plan document is optional.
+Use `docs/templates/plan-template.md` only when the plan should become a durable repo artifact worth re-reading, sharing, or handing off.
+By default, persist the task spec rather than the plan.
 
 The plan should clarify:
 - problem
@@ -33,10 +36,14 @@ The plan should clarify:
 - phased direction
 - first slice
 
+If the plan is already clear from an interactive planning session, move directly to spec derivation.
+Do not force a second written plan unless it adds durable value.
+
 ### 3. Derive task specs
-Use `skills/plan-to-spec.md` and `docs/templates/task-spec-template.md`.
+Use `skills/plan-to-spec.md`, `docs/specs/README.md`, and `docs/templates/task-spec-template.md`.
 
 A task spec should shrink the plan into a narrow implementation contract.
+See `docs/specs/README.md` for naming, splitting, and lifecycle conventions.
 
 ### 4. Decide starter/code skeleton work deliberately
 Project starter work is a result of planning, not a global precondition.
@@ -62,4 +69,12 @@ Do not turn every task discussion into permanent docs.
 
 This SOP is intended to remain lightweight.  
 The goal is not to create many documents.  
-The goal is to create enough structure that implementation stays controlled, reviewable, and reusable.
+The goal is to create enough structure that implementation stays controlled, reviewable, and reusable.  
+The goal is one or more small specs, not one large spec.
+
+## Multi-Model Collaboration Variant
+
+If design discussion, planning, spec derivation, and execution are split across different tools or different people, use `docs/guides/design-to-spec-handoff.md`.
+
+That guide is an extension of this SOP, not a replacement for it.
+The same core rule still applies: implementation should run from a clear task spec, not directly from a broad design discussion or a broad plan.
