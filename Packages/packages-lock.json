@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.carber.perf.util": {
+      "version": "file:com.carber.perf.util",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.sysroot": {
       "version": "2.0.10",
       "depth": 1,
