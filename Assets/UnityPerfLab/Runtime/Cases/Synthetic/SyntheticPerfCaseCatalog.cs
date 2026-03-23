@@ -31,6 +31,18 @@ namespace UnityPerfLab.Cases.Synthetic
                 cases.Add(new LinkedListAddPerfCase(CollectionPayloadKind.Int, workloadSize));
                 cases.Add(new LinkedListAddPerfCase(CollectionPayloadKind.Class, workloadSize));
                 cases.Add(new LinkedListAddPerfCase(CollectionPayloadKind.Struct, workloadSize));
+                cases.Add(new Il2CppSemanticOverheadPerfCase(Il2CppSemanticScenario.StaticPropertyVectorInLoop, workloadSize));
+                cases.Add(new Il2CppSemanticOverheadPerfCase(Il2CppSemanticScenario.StaticPropertyVectorHoistedLocal, workloadSize));
+                cases.Add(new Il2CppSemanticOverheadPerfCase(Il2CppSemanticScenario.ConstScalar, workloadSize));
+                cases.Add(new Il2CppSemanticOverheadPerfCase(Il2CppSemanticScenario.StaticReadonlyScalar, workloadSize));
+                cases.Add(new Il2CppSemanticOverheadPerfCase(Il2CppSemanticScenario.DeclarationOnlyStaticInitialization, workloadSize));
+                cases.Add(new Il2CppSemanticOverheadPerfCase(Il2CppSemanticScenario.ExplicitStaticConstructorInitialization, workloadSize));
+                cases.Add(new Il2CppSemanticOverheadPerfCase(Il2CppSemanticScenario.StaticReadonlyFieldAccess, workloadSize));
+                cases.Add(new Il2CppSemanticOverheadPerfCase(Il2CppSemanticScenario.StaticPropertyAccess, workloadSize));
+                cases.Add(new Il2CppSemanticOverheadPerfCase(Il2CppSemanticScenario.FlatHelper, workloadSize));
+                cases.Add(new Il2CppSemanticOverheadPerfCase(Il2CppSemanticScenario.HelperChain, workloadSize));
+                cases.Add(new Il2CppSemanticOverheadPerfCase(Il2CppSemanticScenario.FixedArityHelper, workloadSize));
+                cases.Add(new Il2CppSemanticOverheadPerfCase(Il2CppSemanticScenario.ParamsHelper, workloadSize));
             }
 
             return cases;

@@ -57,12 +57,20 @@ The current synthetic suite includes:
 - `LinkedList_Int_Add_*`, `LinkedList_Class_Add_*`, and `LinkedList_Struct_Add_*`
 - `DirectCall_*` and `InterfaceCall_*`
 - `Closure_NoCapture_*` and `Closure_Capture_*`
+- `StaticProperty_VectorLike_*`
+- `ConstScalar_*` and `StaticReadonlyScalar_*`
+- `StaticInit_DeclarationOnly_*` and `StaticInit_ExplicitCctor_*`
+- `StaticHolder_FieldAccess_*` and `StaticHolder_PropertyAccess_*`
+- `HelperCall_Flat_*` and `HelperCall_Chain_*`
+- `HelperParams_FixedArity_*` and `HelperParams_Params_*`
 
 Each family covers these workload tiers:
 
 - `1K`
 - `100K`
 - `1M`
+
+See [`docs/guides/il2cpp-semantic-overhead-benchmarks.md`](../../docs/guides/il2cpp-semantic-overhead-benchmarks.md) for the hypothesis mapping and interpretation limits of the semantic-overhead cases.
 
 ## Output Locations
 

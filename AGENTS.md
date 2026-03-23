@@ -141,5 +141,6 @@ When changing this repository itself:
 - reinforce the right layer instead of repeating the same rule everywhere
 - update the right layer instead of appending notes everywhere
 - prefer refinement over expansion
+- when a new synthetic benchmark case or benchmark family lands and validated Win64 IL2CPP Release Player results add a new family, materially change an existing finding, or add governance-relevant evidence, consider updating the corresponding benchmark report in the same reviewable slice
 - when a Unity asset, folder, scene, or asmdef is added, moved, or edited, commit the corresponding `.meta` files in the same reviewable change
 - when accepted Unity Editor work updates `ProjectSettings/*` or `Packages/*`, keep those project configuration files in sync in version control instead of leaving local-only drift

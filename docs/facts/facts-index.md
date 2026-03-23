@@ -22,6 +22,11 @@ Facts are not an archive of every discussion.
   - reusable example cases
   - representative workflows or outcomes worth preserving
 
+- `il2cpp-hot-path-governance.md`
+  - validated IL2CPP hot-path cleanup guidance
+  - benchmark-backed semantic-overhead governance priorities
+  - stable review heuristics for future optimization work
+
 ## Do not store in facts
 
 Do not put these into facts:

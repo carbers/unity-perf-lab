@@ -16,6 +16,7 @@ This repository still keeps the SOP layer that originally seeded the project, so
 3. direct call vs interface or virtual dispatch cost
 4. boxing, generics, and abstraction overhead
 5. closure, lambda, LINQ, and allocation-related hypotheses
+6. IL2CPP hot-path semantic-overhead patterns such as static access shape, helper indirection, and `params` convenience cost
 
 The first MVP focuses on a working closed loop:
 
@@ -70,7 +71,7 @@ The current `UnityPerfLab` MVP includes:
 
 1. isolated asmdef layering
 2. a unified benchmark runner and case abstraction
-3. synthetic benchmark suites with explicit workload sizes across looping, collections, dispatch, and closure families
+3. synthetic benchmark suites with explicit workload sizes across looping, collections, dispatch, closure, and semantic-overhead families
 4. CSV export to `summary.csv` and `raw_samples.csv`
 5. environment metadata export
 6. Editor menu entry points
@@ -86,3 +87,4 @@ Real-world adapter hooks are scaffolded, but no real project-specific runtime ca
 4. read [docs/specs/2026-03-22-001-benchmark-mvp.md](docs/specs/2026-03-22-001-benchmark-mvp.md) for the current benchmark MVP contract, then [docs/specs/README.md](docs/specs/README.md) for the full spec index
 5. if design, planning, and execution are split across tools or roles, use [docs/guides/design-to-spec-handoff.md](docs/guides/design-to-spec-handoff.md)
 6. use [docs/templates/design-to-planner-prompt-template.md](docs/templates/design-to-planner-prompt-template.md) and [docs/templates/spec-to-executor-prompt-template.md](docs/templates/spec-to-executor-prompt-template.md) for structured handoff prompts
+7. read [docs/guides/il2cpp-semantic-overhead-benchmarks.md](docs/guides/il2cpp-semantic-overhead-benchmarks.md) for the current hot-path semantic-overhead benchmark family

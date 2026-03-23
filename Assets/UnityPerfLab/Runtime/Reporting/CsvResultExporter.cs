@@ -348,6 +348,11 @@ namespace UnityPerfLab.Runtime.Reporting
 
         private static string GetSubject(PerfCaseDescriptor descriptor)
         {
+            if (descriptor.Parameters != null && descriptor.Parameters.TryGetValue("subject", out string subject))
+            {
+                return subject;
+            }
+
             if (descriptor.Parameters != null && descriptor.Parameters.TryGetValue("collection", out string collection))
             {
                 return collection;
@@ -361,6 +366,11 @@ namespace UnityPerfLab.Runtime.Reporting
             if (descriptor.Parameters == null)
             {
                 return string.Empty;
+            }
+
+            if (descriptor.Parameters.TryGetValue("variant", out string variant))
+            {
+                return variant;
             }
 
             if (descriptor.Parameters.TryGetValue("loop", out string loop))
