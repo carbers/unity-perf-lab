@@ -52,6 +52,9 @@ The current synthetic suite includes:
 - `Array_Int_For_*` and `Array_Int_ForEach_*`
 - `List_Int_For_*` and `List_Int_ForEach_*`
 - `List_Struct_For_*` and `List_Struct_ForEach_*`
+- `Dictionary_Int_Lookup_*`
+- `LinkedList_Int_ForEach_*`, `LinkedList_Class_ForEach_*`, and `LinkedList_Struct_ForEach_*`
+- `LinkedList_Int_Add_*`, `LinkedList_Class_Add_*`, and `LinkedList_Struct_Add_*`
 - `DirectCall_*` and `InterfaceCall_*`
 - `Closure_NoCapture_*` and `Closure_Capture_*`
 
@@ -113,7 +116,7 @@ On startup, the bootstrap flow runs the synthetic suite automatically, exports r
 
 ## Roadmap
 
-- `002`: collections and data layout cases
+- `002`: additional collections and data layout cases
 - `003`: boxing, generics, and abstraction cases
 - `004`: real-world adapters and implementation integration
 - `005`: configuration, versioning, and regression comparison

@@ -19,6 +19,21 @@ namespace UnityPerfLab.Cases.Synthetic
             return PerfMeasurementConfig.CreateTargetDuration(200, 32, 200000, 5, 20, 8);
         }
 
+        public static PerfMeasurementConfig CreateForConstruction(int workloadSize)
+        {
+            if (workloadSize >= 1000000)
+            {
+                return PerfMeasurementConfig.CreateFixedIterations(1, 2, 6);
+            }
+
+            if (workloadSize >= 100000)
+            {
+                return PerfMeasurementConfig.CreateFixedIterations(1, 3, 10);
+            }
+
+            return PerfMeasurementConfig.CreateTargetDuration(200, 8, 256, 5, 20, 4);
+        }
+
         public static PerfMeasurementConfig CreateForClosure(int workloadSize)
         {
             if (workloadSize >= 1000000)

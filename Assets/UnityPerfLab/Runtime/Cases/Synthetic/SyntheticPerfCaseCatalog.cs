@@ -24,6 +24,13 @@ namespace UnityPerfLab.Cases.Synthetic
                 cases.Add(new CallDispatchPerfCase(true, workloadSize));
                 cases.Add(new ClosureCapturePerfCase(false, workloadSize));
                 cases.Add(new ClosureCapturePerfCase(true, workloadSize));
+                cases.Add(new DictionaryLookupPerfCase(workloadSize));
+                cases.Add(new LinkedListIterationPerfCase(CollectionPayloadKind.Int, workloadSize));
+                cases.Add(new LinkedListIterationPerfCase(CollectionPayloadKind.Class, workloadSize));
+                cases.Add(new LinkedListIterationPerfCase(CollectionPayloadKind.Struct, workloadSize));
+                cases.Add(new LinkedListAddPerfCase(CollectionPayloadKind.Int, workloadSize));
+                cases.Add(new LinkedListAddPerfCase(CollectionPayloadKind.Class, workloadSize));
+                cases.Add(new LinkedListAddPerfCase(CollectionPayloadKind.Struct, workloadSize));
             }
 
             return cases;

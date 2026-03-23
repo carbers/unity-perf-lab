@@ -70,7 +70,7 @@ The current `UnityPerfLab` MVP includes:
 
 1. isolated asmdef layering
 2. a unified benchmark runner and case abstraction
-3. synthetic benchmark suites with explicit workload sizes
+3. synthetic benchmark suites with explicit workload sizes across looping, collections, dispatch, and closure families
 4. CSV export to `summary.csv` and `raw_samples.csv`
 5. environment metadata export
 6. Editor menu entry points
