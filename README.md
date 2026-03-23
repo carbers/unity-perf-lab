@@ -72,10 +72,11 @@ The current `UnityPerfLab` MVP includes:
 1. isolated asmdef layering
 2. a unified benchmark runner and case abstraction
 3. synthetic benchmark suites with explicit workload sizes across looping, collections, dispatch, closure, and semantic-overhead families
-4. CSV export to `summary.csv` and `raw_samples.csv`
-5. environment metadata export
-6. Editor menu entry points
-7. Win64 IL2CPP Release build entry
+4. package-backed custom container coverage for linked-list traversal/add and dictionary lookup variants
+5. CSV export to `summary.csv` and `raw_samples.csv`
+6. environment metadata export
+7. Editor menu entry points
+8. Win64 IL2CPP Release build entry
 
 Real-world adapter hooks are scaffolded, but no real project-specific runtime case is wired yet because the repository does not currently contain reusable business/runtime implementations.
 

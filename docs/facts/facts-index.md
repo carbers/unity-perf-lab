@@ -27,6 +27,11 @@ Facts are not an archive of every discussion.
   - benchmark-backed semantic-overhead governance priorities
   - stable review heuristics for future optimization work
 
+- `simple-vs-standard-collections.md`
+  - validated `PreUtil` simple collection vs standard collection comparison report
+  - direct Player and Editor deltas for linked-list traversal/add and dictionary lookup
+  - reuse guidance and interpretation limits for future container-choice discussions
+
 ## Do not store in facts
 
 Do not put these into facts:

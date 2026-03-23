@@ -52,9 +52,12 @@ The current synthetic suite includes:
 - `Array_Int_For_*` and `Array_Int_ForEach_*`
 - `List_Int_For_*` and `List_Int_ForEach_*`
 - `List_Struct_For_*` and `List_Struct_ForEach_*`
-- `Dictionary_Int_Lookup_*`
+- `Dictionary_Int_Lookup_*` and `Dictionary_Int_DefaultComparer_Lookup_*`
+- `SimpleIntDictionary_Int_Lookup_*`, `SimpleUIntDictionary_UInt_Lookup_*`, `SimpleUlongDictionary_ULong_Lookup_*`, and `SimpleStringDictionary_String_Lookup_*`
 - `LinkedList_Int_ForEach_*`, `LinkedList_Class_ForEach_*`, and `LinkedList_Struct_ForEach_*`
 - `LinkedList_Int_Add_*`, `LinkedList_Class_Add_*`, and `LinkedList_Struct_Add_*`
+- `SimpleLinkList_Int_Traverse_*`, `SimpleLinkList_Class_Traverse_*`, and `SimpleLinkList_Struct_Traverse_*`
+- `SimpleLinkList_Int_Add_*`, `SimpleLinkList_Class_Add_*`, and `SimpleLinkList_Struct_Add_*`
 - `DirectCall_*` and `InterfaceCall_*`
 - `Closure_NoCapture_*` and `Closure_Capture_*`
 - `StaticProperty_VectorLike_*`
@@ -69,6 +72,8 @@ Each family covers these workload tiers:
 - `1K`
 - `100K`
 - `1M`
+
+The custom container cases use the in-project `PreUtil` package. Built-in and custom dictionary cases share the same export flow, but variants that change key type should be read as lookup-shape observations rather than strict apples-to-apples implementation winners.
 
 See [`docs/guides/il2cpp-semantic-overhead-benchmarks.md`](../../docs/guides/il2cpp-semantic-overhead-benchmarks.md) for the hypothesis mapping and interpretation limits of the semantic-overhead cases.
 

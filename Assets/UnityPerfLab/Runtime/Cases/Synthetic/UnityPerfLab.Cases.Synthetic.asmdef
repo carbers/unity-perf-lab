@@ -2,7 +2,8 @@
   "name": "UnityPerfLab.Cases.Synthetic",
   "rootNamespace": "UnityPerfLab.Cases.Synthetic",
   "references": [
-    "UnityPerfLab.Runtime"
+    "UnityPerfLab.Runtime",
+    "PreUtil"
   ],
   "includePlatforms": [],
   "excludePlatforms": [],
