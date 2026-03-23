@@ -67,11 +67,14 @@ Editor runs write to:
 
 - `<ProjectRoot>/PerfLabResults/<run_id>/summary.csv`
 - `<ProjectRoot>/PerfLabResults/<run_id>/raw_samples.csv`
+- `<ProjectRoot>/PerfLabResults/<run_id>/overview.csv`
+- `<ProjectRoot>/PerfLabResults/<run_id>/overview.md`
 - `<ProjectRoot>/PerfLabResults/<run_id>/metadata.json`
 
 Player runs write to:
 
 - `Application.persistentDataPath/PerfLabResults/<run_id>/`
+- The same directory also includes `overview.csv` and `overview.md` for quick reading.
 
 Optional Player override:
 
