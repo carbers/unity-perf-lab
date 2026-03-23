@@ -141,3 +141,5 @@ When changing this repository itself:
 - reinforce the right layer instead of repeating the same rule everywhere
 - update the right layer instead of appending notes everywhere
 - prefer refinement over expansion
+- when a Unity asset, folder, scene, or asmdef is added, moved, or edited, commit the corresponding `.meta` files in the same reviewable change
+- when accepted Unity Editor work updates `ProjectSettings/*` or `Packages/*`, keep those project configuration files in sync in version control instead of leaving local-only drift
