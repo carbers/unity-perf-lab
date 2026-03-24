@@ -56,6 +56,10 @@ The current synthetic suite includes:
 - `SimpleIntDictionary_Int_Lookup_*`, `SimpleUIntDictionary_UInt_Lookup_*`, `SimpleUlongDictionary_ULong_Lookup_*`, and `SimpleStringDictionary_String_Lookup_*`
 - `LinkedList_Int_ForEach_*`, `LinkedList_Class_ForEach_*`, and `LinkedList_Struct_ForEach_*`
 - `LinkedList_Int_Add_*`, `LinkedList_Class_Add_*`, and `LinkedList_Struct_Add_*`
+- `List_Int_Traverse_*`, `List_Class_Traverse_*`, and `List_Struct_Traverse_*`
+- `List_Int_Add_*`, `List_Class_Add_*`, and `List_Struct_Add_*`
+- `SimpleList_Int_Traverse_*`, `SimpleList_Class_Traverse_*`, and `SimpleList_Struct_Traverse_*`
+- `SimpleList_Int_Add_*`, `SimpleList_Class_Add_*`, and `SimpleList_Struct_Add_*`
 - `SimpleLinkList_Int_Traverse_*`, `SimpleLinkList_Class_Traverse_*`, and `SimpleLinkList_Struct_Traverse_*`
 - `SimpleLinkList_Int_Add_*`, `SimpleLinkList_Class_Add_*`, and `SimpleLinkList_Struct_Add_*`
 - `DirectCall_*` and `InterfaceCall_*`
@@ -84,13 +88,14 @@ Editor runs write to:
 - `<ProjectRoot>/PerfLabResults/<run_id>/summary.csv`
 - `<ProjectRoot>/PerfLabResults/<run_id>/raw_samples.csv`
 - `<ProjectRoot>/PerfLabResults/<run_id>/overview.csv`
+- `<ProjectRoot>/PerfLabResults/<run_id>/summary.md`
 - `<ProjectRoot>/PerfLabResults/<run_id>/overview.md`
 - `<ProjectRoot>/PerfLabResults/<run_id>/metadata.json`
 
 Player runs write to:
 
 - `Application.persistentDataPath/PerfLabResults/<run_id>/`
-- The same directory also includes `overview.csv` and `overview.md` for quick reading.
+- The same directory also includes `overview.csv`, `summary.md`, and `overview.md` for quick reading.
 
 Optional Player override:
 

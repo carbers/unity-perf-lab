@@ -14,11 +14,13 @@ namespace UnityPerfLab.Runtime.Reporting
         {
             string runDirectory = PerfResultPathResolver.ResolveRunDirectory(request, result);
             result.OutputDirectory = runDirectory;
+            string summaryMarkdown = BuildSummaryMarkdown(result);
 
             File.WriteAllText(Path.Combine(runDirectory, "summary.csv"), BuildSummaryCsv(result), Encoding.UTF8);
             File.WriteAllText(Path.Combine(runDirectory, "raw_samples.csv"), BuildRawSamplesCsv(result), Encoding.UTF8);
             File.WriteAllText(Path.Combine(runDirectory, "overview.csv"), BuildOverviewCsv(result), Encoding.UTF8);
-            File.WriteAllText(Path.Combine(runDirectory, "overview.md"), BuildOverviewMarkdown(result), Encoding.UTF8);
+            File.WriteAllText(Path.Combine(runDirectory, "summary.md"), summaryMarkdown, Encoding.UTF8);
+            File.WriteAllText(Path.Combine(runDirectory, "overview.md"), summaryMarkdown, Encoding.UTF8);
 
             if (request.IncludeMetadata && result.Metadata != null)
             {
@@ -99,7 +101,7 @@ namespace UnityPerfLab.Runtime.Reporting
 
         private static string BuildOverviewCsv(PerfRunResult result)
         {
-            List<OverviewRow> rows = BuildOverviewRows(result);
+            List<OverviewRow> rows = BuildOverviewRows(result, CompareOverviewRowsBySize);
             StringBuilder builder = new StringBuilder();
             builder.AppendLine("size_label,size,category,subject,variant,case_name,median_ns,mean_ns,ops_per_sec");
 
@@ -122,11 +124,11 @@ namespace UnityPerfLab.Runtime.Reporting
             return builder.ToString();
         }
 
-        private static string BuildOverviewMarkdown(PerfRunResult result)
+        private static string BuildSummaryMarkdown(PerfRunResult result)
         {
-            List<OverviewRow> rows = BuildOverviewRows(result);
+            List<OverviewRow> rows = BuildOverviewRows(result, CompareOverviewRowsByCategory);
             StringBuilder builder = new StringBuilder();
-            builder.AppendLine("# UnityPerfLab Overview");
+            builder.AppendLine("# UnityPerfLab Summary");
             builder.AppendLine();
             builder.AppendLine("- run_id: `" + result.RunId + "`");
             builder.AppendLine("- unity_version: `" + result.Metadata.UnityVersion + "`");
@@ -134,10 +136,24 @@ namespace UnityPerfLab.Runtime.Reporting
             builder.AppendLine("- build_config: `" + result.Metadata.BuildConfiguration + "`");
             builder.AppendLine();
 
+            string currentCategory = null;
             int currentSize = -1;
             for (int i = 0; i < rows.Count; i++)
             {
                 OverviewRow row = rows[i];
+                if (!string.Equals(row.Category, currentCategory, StringComparison.Ordinal))
+                {
+                    if (currentCategory != null)
+                    {
+                        builder.AppendLine();
+                    }
+
+                    currentCategory = row.Category;
+                    currentSize = -1;
+                    builder.AppendLine("## " + EscapeMarkdownCell(row.Category));
+                    builder.AppendLine();
+                }
+
                 if (row.Size != currentSize)
                 {
                     if (currentSize != -1)
@@ -146,15 +162,13 @@ namespace UnityPerfLab.Runtime.Reporting
                     }
 
                     currentSize = row.Size;
-                    builder.AppendLine("## " + row.SizeLabel);
+                    builder.AppendLine("### " + row.SizeLabel);
                     builder.AppendLine();
-                    builder.AppendLine("| Category | Subject | Variant | Median ns/op | Mean ns/op | Ops/sec |");
-                    builder.AppendLine("| --- | --- | --- | ---: | ---: | ---: |");
+                    builder.AppendLine("| Subject | Variant | Median ns/op | Mean ns/op | Ops/sec |");
+                    builder.AppendLine("| --- | --- | ---: | ---: | ---: |");
                 }
 
                 builder.Append("| ");
-                builder.Append(EscapeMarkdownCell(row.Category));
-                builder.Append(" | ");
                 builder.Append(EscapeMarkdownCell(row.Subject));
                 builder.Append(" | ");
                 builder.Append(EscapeMarkdownCell(row.Variant));
@@ -191,7 +205,7 @@ namespace UnityPerfLab.Runtime.Reporting
             return builder.ToString();
         }
 
-        private static List<OverviewRow> BuildOverviewRows(PerfRunResult result)
+        private static List<OverviewRow> BuildOverviewRows(PerfRunResult result, Comparison<OverviewRow> comparison)
         {
             List<OverviewRow> rows = new List<OverviewRow>(result.CaseResults.Count);
             for (int i = 0; i < result.CaseResults.Count; i++)
@@ -213,7 +227,7 @@ namespace UnityPerfLab.Runtime.Reporting
                         caseResult.Summary.OperationsPerSecond));
             }
 
-            rows.Sort(CompareOverviewRows);
+            rows.Sort(comparison);
             return rows;
         }
 
@@ -244,7 +258,7 @@ namespace UnityPerfLab.Runtime.Reporting
             return "\"" + safe.Replace("\"", "\"\"") + "\"";
         }
 
-        private static int CompareOverviewRows(OverviewRow left, OverviewRow right)
+        private static int CompareOverviewRowsBySize(OverviewRow left, OverviewRow right)
         {
             int sizeComparison = left.Size.CompareTo(right.Size);
             if (sizeComparison != 0)
@@ -256,6 +270,35 @@ namespace UnityPerfLab.Runtime.Reporting
             if (categoryComparison != 0)
             {
                 return categoryComparison;
+            }
+
+            int subjectComparison = string.Compare(left.Subject, right.Subject, StringComparison.Ordinal);
+            if (subjectComparison != 0)
+            {
+                return subjectComparison;
+            }
+
+            int variantComparison = string.Compare(left.Variant, right.Variant, StringComparison.Ordinal);
+            if (variantComparison != 0)
+            {
+                return variantComparison;
+            }
+
+            return string.Compare(left.CaseName, right.CaseName, StringComparison.Ordinal);
+        }
+
+        private static int CompareOverviewRowsByCategory(OverviewRow left, OverviewRow right)
+        {
+            int categoryComparison = string.Compare(left.Category, right.Category, StringComparison.Ordinal);
+            if (categoryComparison != 0)
+            {
+                return categoryComparison;
+            }
+
+            int sizeComparison = left.Size.CompareTo(right.Size);
+            if (sizeComparison != 0)
+            {
+                return sizeComparison;
             }
 
             int subjectComparison = string.Compare(left.Subject, right.Subject, StringComparison.Ordinal);

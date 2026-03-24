@@ -73,7 +73,7 @@ The current `UnityPerfLab` MVP includes:
 2. a unified benchmark runner and case abstraction
 3. synthetic benchmark suites with explicit workload sizes across looping, collections, dispatch, closure, and semantic-overhead families
 4. package-backed custom container coverage for linked-list traversal/add and dictionary lookup variants
-5. CSV export to `summary.csv` and `raw_samples.csv`
+5. CSV export to `summary.csv`, `raw_samples.csv`, `overview.csv`, and categorized Markdown summaries
 6. environment metadata export
 7. Editor menu entry points
 8. Win64 IL2CPP Release build entry

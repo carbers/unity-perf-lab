@@ -36,6 +36,18 @@ namespace UnityPerfLab.Cases.Synthetic
                 cases.Add(new LinkedListAddPerfCase(CollectionPayloadKind.Int, workloadSize));
                 cases.Add(new LinkedListAddPerfCase(CollectionPayloadKind.Class, workloadSize));
                 cases.Add(new LinkedListAddPerfCase(CollectionPayloadKind.Struct, workloadSize));
+                cases.Add(new ListTraversalPerfCase(CollectionPayloadKind.Int, workloadSize));
+                cases.Add(new ListTraversalPerfCase(CollectionPayloadKind.Class, workloadSize));
+                cases.Add(new ListTraversalPerfCase(CollectionPayloadKind.Struct, workloadSize));
+                cases.Add(new ListAddPerfCase(CollectionPayloadKind.Int, workloadSize));
+                cases.Add(new ListAddPerfCase(CollectionPayloadKind.Class, workloadSize));
+                cases.Add(new ListAddPerfCase(CollectionPayloadKind.Struct, workloadSize));
+                cases.Add(new SimpleListTraversalPerfCase(CollectionPayloadKind.Int, workloadSize));
+                cases.Add(new SimpleListTraversalPerfCase(CollectionPayloadKind.Class, workloadSize));
+                cases.Add(new SimpleListTraversalPerfCase(CollectionPayloadKind.Struct, workloadSize));
+                cases.Add(new SimpleListAddPerfCase(CollectionPayloadKind.Int, workloadSize));
+                cases.Add(new SimpleListAddPerfCase(CollectionPayloadKind.Class, workloadSize));
+                cases.Add(new SimpleListAddPerfCase(CollectionPayloadKind.Struct, workloadSize));
                 cases.Add(new SimpleLinkListIterationPerfCase(CollectionPayloadKind.Int, workloadSize));
                 cases.Add(new SimpleLinkListIterationPerfCase(CollectionPayloadKind.Class, workloadSize));
                 cases.Add(new SimpleLinkListIterationPerfCase(CollectionPayloadKind.Struct, workloadSize));

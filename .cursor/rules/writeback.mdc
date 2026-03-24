@@ -19,6 +19,7 @@ If the answer is not clearly yes, do not write it back.
 - a validation reference became reusable
 - a workflow rule became stable enough to reuse
 - a repeated procedure should become or update a skill
+- a benchmark-backed fact would be materially easier to reuse with a minimal example snippet that shows the measured usage shape
 
 ## Write back to
 - `docs/facts/*` for stable project context
@@ -33,3 +34,5 @@ If the answer is not clearly yes, do not write it back.
 - details that are only useful for the current task
 
 Facts are stable context, not an archive.
+
+When a fact recommends or compares a reusable coding pattern, include a short example snippet if the example is stable and clarifies the measured path.
